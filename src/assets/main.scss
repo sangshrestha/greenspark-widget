@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+
+  font-family: "Cabin", sans-serif;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+#app {
+  width: max-content;
+  height: 419px;
+  padding: 36px;
+
+  border-radius: 8px;
+  background-color: #F9F9F9;
+  box-shadow: 0 42px 76px 0 rgba(#000, 0.05);
+}
