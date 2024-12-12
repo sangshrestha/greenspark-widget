@@ -8,4 +8,9 @@
 
 <script setup lang="ts"></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+header {
+  padding-bottom: 12px;
+  border-bottom: 2px solid #b0b0b0;
+}
+</style>

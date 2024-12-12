@@ -18,6 +18,9 @@ body {
 }
 
 #app {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: max-content;
   height: 419px;
   padding: 36px;
