@@ -10,15 +10,16 @@
       </div>
     </div>
     <div class="widget__option">
-      <label class="widget__option-text">Link to Public Profile </label>
-      <a href="#" class="public-profile-link">
-        <InfoIcon />
-      </a>
+      <label class="widget__option-text"
+        >Link to Public Profile
+        <InfoInline />
+      </label>
       <label class="checkbox">
         <input type="checkbox" :checked="linked" />
         <div class="checkbox__style">
-          <TickIcon /></div
-      ></label>
+          <TickIcon />
+        </div>
+      </label>
     </div>
     <div class="widget__option">
       <p class="widget__option-text">Badge colour</p>
@@ -31,8 +32,8 @@
 
 <script setup lang="ts">
 import GreensparkLogo from "./GreensparkLogo.vue";
-import InfoIcon from "./InfoIcon.vue";
-import TickIcon from "./TickIcon.vue";
+import InfoInline from "./InfoInline.vue";
+import TickIcon from "./icon/TickIcon.vue";
 
 const props = defineProps({
   action: { type: String, required: true },
@@ -130,6 +131,22 @@ $colour-black: #212121;
       height: 100%;
       border-radius: 3px;
       border: 2px solid $colour-black;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        height: 0;
+        width: 0;
+
+        opacity: 0;
+        border-radius: 50%;
+        background-color: rgba(#afc6bd, 0.5);
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease-in-out;
+      }
     }
 
     svg {
@@ -158,7 +175,10 @@ $colour-black: #212121;
           }
 
           &::after {
-            display: none;
+            height: 0px;
+            width: 0px;
+
+            opacity: 0;
           }
         }
       }
@@ -166,17 +186,12 @@ $colour-black: #212121;
 
     &:hover {
       .checkbox__style::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
         height: 36px;
         width: 36px;
 
-        border-radius: 50%;
-        background-color: rgba(#afc6bd, 0.5);
-        transform: translate(-50%, -50%);
+        opacity: 1;
+
+        transition-delay: 0.2s;
       }
     }
   }
