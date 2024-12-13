@@ -60,5 +60,6 @@ const props = defineProps({
   dark: { type: Boolean, default: false },
 });
 
+// default to light
 const fill = props.dark ? "#3b755f" : "#f9f9f9";
 </script>
