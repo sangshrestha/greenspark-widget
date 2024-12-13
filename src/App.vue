@@ -11,6 +11,7 @@
         :action="widget.action"
         :amount="widget.amount"
         :type="widget.type"
+        :linked="widget.linked"
         :selected-color="widget.selectedColor"
       />
     </template>

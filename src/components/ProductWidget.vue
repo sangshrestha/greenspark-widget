@@ -10,7 +10,15 @@
       </div>
     </div>
     <div class="widget__option">
-      <p class="widget__option-text">Link to Public Profile</p>
+      <label class="widget__option-text">Link to Public Profile </label>
+      <a href="#" class="public-profile-link">
+        <InfoIcon />
+      </a>
+      <label class="checkbox">
+        <input type="checkbox" :checked="linked" />
+        <div class="checkbox__style">
+          <TickIcon /></div
+      ></label>
     </div>
     <div class="widget__option">
       <p class="widget__option-text">Badge colour</p>
@@ -23,11 +31,14 @@
 
 <script setup lang="ts">
 import GreensparkLogo from "./GreensparkLogo.vue";
+import InfoIcon from "./InfoIcon.vue";
+import TickIcon from "./TickIcon.vue";
 
 const props = defineProps({
   action: { type: String, required: true },
   amount: { type: Number, required: true },
   type: { type: String, required: true },
+  linked: { type: Boolean, required: true },
   selectedColor: { type: String, required: true },
 });
 
@@ -37,6 +48,9 @@ const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
 </script>
 
 <style lang="scss" scoped>
+$colour-green: #3b755f;
+$colour-black: #212121;
+
 .widget {
   display: flex;
   flex-direction: column;
@@ -72,6 +86,11 @@ const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
     }
   }
 
+  &__option {
+    display: flex;
+    align-items: center;
+  }
+
   &__option-text {
     color: #3b755f;
     font-size: 14px;
@@ -80,14 +99,14 @@ const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
   $colours: (
     "blue": #2e3a8c,
     "white": #fff,
-    "black": #212121,
+    "black": $colour-black,
     "beige": #f2ebdb,
-    "green": #3b755f,
+    "green": $colour-green,
   );
 
   &.light {
     .widget__heading {
-      color: #3b755f;
+      color: $colour-green;
     }
   }
 
@@ -97,6 +116,79 @@ const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
         background-color: #{$hex};
       }
     }
+  }
+
+  .checkbox {
+    position: relative;
+    width: 18px;
+    height: 18px;
+
+    margin-left: auto;
+
+    &__style {
+      width: 100%;
+      height: 100%;
+      border-radius: 3px;
+      border: 2px solid $colour-black;
+    }
+
+    svg {
+      display: none;
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+    }
+
+    input {
+      position: absolute;
+      height: 0;
+      width: 0;
+
+      &:checked {
+        accent-color: red;
+
+        & + .checkbox__style {
+          border: none;
+          background-color: $colour-green;
+
+          svg {
+            display: block;
+          }
+
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .checkbox__style::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        height: 36px;
+        width: 36px;
+
+        border-radius: 50%;
+        background-color: rgba(#afc6bd, 0.5);
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
+
+.public-profile-link {
+  height: 11px;
+  margin-left: 3px;
+  align-self: flex-start;
+
+  svg {
+    display: block;
   }
 }
 </style>
