@@ -1,0 +1,1 @@
+const e=[{id:1,type:"plastic",amount:10,action:"collects",active:!0,linked:!1,selectedColor:"blue"},{id:2,type:"trees",amount:25,action:"plants",active:!1,linked:!0,selectedColor:"green"},{id:3,type:"carbon",amount:60,action:"offsets",active:!1,linked:!1,selectedColor:"beige"}];export{e as default};
