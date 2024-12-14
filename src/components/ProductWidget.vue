@@ -85,8 +85,14 @@ const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
   }
 
   &__option-text {
-    color: #3b755f;
+    color: $colour-green;
     font-size: 14px;
+  }
+
+  &.light {
+    .widget__heading {
+      color: $colour-green;
+    }
   }
 
   $colours: (
@@ -97,28 +103,12 @@ const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
     "green": $colour-green,
   );
 
-  &.light {
-    .widget__heading {
-      color: $colour-green;
-    }
-  }
-
   @each $colour, $hex in $colours {
     &.#{$colour} {
       .widget__header {
         background-color: #{$hex};
       }
     }
-  }
-}
-
-.public-profile-link {
-  height: 11px;
-  margin-left: 3px;
-  align-self: flex-start;
-
-  svg {
-    display: block;
   }
 }
 </style>
