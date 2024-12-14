@@ -70,5 +70,10 @@ header {
 main {
   display: flex;
   gap: 58px;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
