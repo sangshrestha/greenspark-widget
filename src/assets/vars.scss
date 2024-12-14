@@ -1,5 +1,16 @@
+$colour-blue: #2e3a8c;
 $colour-green: #3b755f;
+$colour-beige: #f2ebdb;
+$colour-white: #ffffff;
 $colour-black: #212121;
+
+$colours: (
+  "blue": $colour-blue,
+  "green": $colour-green,
+  "beige": $colour-beige,
+  "white": $colour-white,
+  "black": $colour-black,
+);
 
 @mixin square($length) {
     width: $length;

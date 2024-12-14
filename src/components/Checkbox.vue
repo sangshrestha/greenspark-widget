@@ -21,8 +21,6 @@ defineProps({
 
   position: relative;
 
-  margin-left: auto;
-
   &:hover {
     .checkbox__visual {
       &::after {

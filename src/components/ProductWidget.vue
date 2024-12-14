@@ -1,5 +1,5 @@
 <template>
-  <div class="widget" :class="[selectedColor, contrast]">
+  <div class="widget" :class="[currentColour, contrast]">
     <div class="widget__header">
       <div class="widget__logo">
         <GreensparkLogo :dark="contrast === 'light'" />
@@ -10,14 +10,19 @@
       </div>
     </div>
     <div class="widget__option">
-      <label class="widget__option-text"
-        >Link to Public Profile
+      <p class="widget__option-text">
+        Link to Public Profile
         <InfoInline />
-      </label>
+      </p>
       <Checkbox :checked="linked" />
     </div>
     <div class="widget__option">
       <p class="widget__option-text">Badge colour</p>
+      <SwatchPalette
+        @swatch="updateColour"
+        :name="`colour-group-${id}`"
+        :selected-colour="selectedColor"
+      />
     </div>
     <div class="widget__option">
       <p class="widget__option-text">Activate badge</p>
@@ -26,11 +31,14 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from "vue";
 import Checkbox from "./Checkbox.vue";
 import GreensparkLogo from "./GreensparkLogo.vue";
 import InfoInline from "./InfoInline.vue";
+import SwatchPalette from "./SwatchPalette.vue";
 
 const props = defineProps({
+  id: { type: Number, required: true },
   action: { type: String, required: true },
   amount: { type: Number, required: true },
   type: { type: String, required: true },
@@ -38,9 +46,17 @@ const props = defineProps({
   selectedColor: { type: String, required: true },
 });
 
+const currentColour = ref(props.selectedColor);
+
 const lightColors = ["white", "beige"];
 
-const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
+const contrast = computed(() =>
+  lightColors.includes(currentColour.value) ? "light" : "dark"
+);
+
+function updateColour(colour: string) {
+  currentColour.value = colour;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -82,6 +98,7 @@ const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
   &__option {
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
   &__option-text {
@@ -94,14 +111,6 @@ const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
       color: $colour-green;
     }
   }
-
-  $colours: (
-    "blue": #2e3a8c,
-    "white": #fff,
-    "black": $colour-black,
-    "beige": #f2ebdb,
-    "green": $colour-green,
-  );
 
   @each $colour, $hex in $colours {
     &.#{$colour} {

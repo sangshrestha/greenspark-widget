@@ -8,6 +8,7 @@
     <template v-else>
       <ProductWidget
         v-for="widget in widgets"
+        :id="widget.id"
         :action="widget.action"
         :amount="widget.amount"
         :type="widget.type"
