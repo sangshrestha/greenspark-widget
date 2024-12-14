@@ -61,6 +61,9 @@ fetchWidgets().then((e) => {
 <style lang="scss" scoped>
 header {
   padding-bottom: 12px;
+
+  color: $colour-black;
+
   border-bottom: 2px solid #b0b0b0;
 }
 
