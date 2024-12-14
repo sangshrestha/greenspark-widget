@@ -42,17 +42,19 @@ async function fetchWidgets() {
     const response = await fetch(
       "https://b795b019-1f84-41f4-93a3-a702d686c75a.mock.pstmn.io/product-widgets"
     );
-    const widgets = await response.json();
-    return widgets;
+    const jsonResponse = await response.json();
+    return jsonResponse;
   } catch (error) {
     console.error(error);
+    // dummy data just so frontend works if fetch fails for any reason
+    const defaultImport = (await import("@/dummy.ts")).default;
+    return defaultImport;
   }
 }
 
 fetchWidgets().then((e) => {
   widgetIsLoading.value = false;
   widgets.value = e;
-  console.log(e);
 });
 </script>
 
