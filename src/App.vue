@@ -10,6 +10,7 @@
         v-for="widget in widgets"
         :id="widget.id"
         :action="widget.action"
+        :active="widget.active"
         :amount="widget.amount"
         :type="widget.type"
         :linked="widget.linked"

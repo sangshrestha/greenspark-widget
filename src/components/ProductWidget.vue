@@ -1,8 +1,8 @@
 <template>
-  <div class="widget" :class="[currentColour, contrast]">
+  <div class="widget" :class="[currentColour, currentContrast]">
     <div class="widget__header">
       <div class="widget__logo">
-        <GreensparkLogo :dark="contrast === 'light'" />
+        <GreensparkLogo :dark="currentContrast === 'light'" />
       </div>
       <div class="widget__heading">
         <p class="widget__heading-top">This product {{ action }}</p>
@@ -26,6 +26,7 @@
     </div>
     <div class="widget__option">
       <p class="widget__option-text">Activate badge</p>
+      <ToggleSwitch name="badge" :checked="active" />
     </div>
   </div>
 </template>
@@ -36,10 +37,12 @@ import Checkbox from "./Checkbox.vue";
 import GreensparkLogo from "./GreensparkLogo.vue";
 import InfoInline from "./InfoInline.vue";
 import SwatchPalette from "./SwatchPalette.vue";
+import ToggleSwitch from "./ToggleSwitch.vue";
 
 const props = defineProps({
   id: { type: Number, required: true },
   action: { type: String, required: true },
+  active: { type: Boolean, required: true },
   amount: { type: Number, required: true },
   type: { type: String, required: true },
   linked: { type: Boolean, required: true },
@@ -49,8 +52,7 @@ const props = defineProps({
 const currentColour = ref(props.selectedColor);
 
 const lightColors = ["white", "beige"];
-
-const contrast = computed(() =>
+const currentContrast = computed(() =>
   lightColors.includes(currentColour.value) ? "light" : "dark"
 );
 

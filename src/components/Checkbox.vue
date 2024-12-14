@@ -54,17 +54,14 @@ defineProps({
 
       opacity: 0;
       border-radius: 50%;
-      background-color: rgba(#afc6bd, 0.5);
+      background-color: rgba($colour-green-light, 0.5);
       transform: translate(-50%, -50%);
-      transition: all 0.4s ease-in-out;
+      transition: $transition;
     }
   }
 
   &__input {
-    // Hide actual input
-    @include square(0);
-
-    position: absolute;
+    display: none;
 
     &:checked {
       & + .checkbox__visual {

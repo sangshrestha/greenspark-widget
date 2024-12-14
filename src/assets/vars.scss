@@ -1,5 +1,6 @@
 $colour-blue: #2e3a8c;
 $colour-green: #3b755f;
+$colour-green-light: #afc6bd;
 $colour-beige: #f2ebdb;
 $colour-white: #ffffff;
 $colour-black: #212121;
@@ -11,6 +12,8 @@ $colours: (
   "white": $colour-white,
   "black": $colour-black,
 );
+
+$transition: all 0.4s ease-in-out;
 
 @mixin square($length) {
     width: $length;
