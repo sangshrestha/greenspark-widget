@@ -1,26 +1,25 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-  ],
+  base: "/greenspark-widget/",
+  plugins: [vue()],
   build: {
-    outDir: "docs"
+    outDir: "docs",
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "@/assets/vars.scss" as *;`
+        additionalData: `@use "@/assets/vars.scss" as *;`,
       },
     },
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-})
+});
