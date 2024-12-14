@@ -50,6 +50,7 @@ async function fetchWidgets() {
 fetchWidgets().then((e) => {
   widgetIsLoading.value = false;
   widgets.value = e;
+  console.log(e);
 });
 </script>
 

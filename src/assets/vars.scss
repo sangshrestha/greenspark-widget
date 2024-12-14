@@ -1,0 +1,12 @@
+$colour-green: #3b755f;
+$colour-black: #212121;
+
+@mixin square($length) {
+    width: $length;
+    height: $length;
+}
+
+@mixin circle($length) {
+    @include square($length);
+    border-radius:  50%;
+}

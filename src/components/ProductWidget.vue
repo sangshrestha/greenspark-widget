@@ -14,12 +14,7 @@
         >Link to Public Profile
         <InfoInline />
       </label>
-      <label class="checkbox">
-        <input type="checkbox" :checked="linked" />
-        <div class="checkbox__style">
-          <TickIcon />
-        </div>
-      </label>
+      <Checkbox :checked="linked" />
     </div>
     <div class="widget__option">
       <p class="widget__option-text">Badge colour</p>
@@ -31,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
+import Checkbox from "./Checkbox.vue";
 import GreensparkLogo from "./GreensparkLogo.vue";
 import InfoInline from "./InfoInline.vue";
-import TickIcon from "./icon/TickIcon.vue";
 
 const props = defineProps({
   action: { type: String, required: true },
@@ -49,9 +44,6 @@ const contrast = lightColors.includes(props.selectedColor) ? "light" : "dark";
 </script>
 
 <style lang="scss" scoped>
-$colour-green: #3b755f;
-$colour-black: #212121;
-
 .widget {
   display: flex;
   flex-direction: column;
@@ -115,83 +107,6 @@ $colour-black: #212121;
     &.#{$colour} {
       .widget__header {
         background-color: #{$hex};
-      }
-    }
-  }
-
-  .checkbox {
-    position: relative;
-    width: 18px;
-    height: 18px;
-
-    margin-left: auto;
-
-    &__style {
-      width: 100%;
-      height: 100%;
-      border-radius: 3px;
-      border: 2px solid $colour-black;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
-        height: 0;
-        width: 0;
-
-        opacity: 0;
-        border-radius: 50%;
-        background-color: rgba(#afc6bd, 0.5);
-        transform: translate(-50%, -50%);
-        transition: all 0.3s ease-in-out;
-      }
-    }
-
-    svg {
-      display: none;
-      position: absolute;
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-    }
-
-    input {
-      position: absolute;
-      height: 0;
-      width: 0;
-
-      &:checked {
-        accent-color: red;
-
-        & + .checkbox__style {
-          border: none;
-          background-color: $colour-green;
-
-          svg {
-            display: block;
-          }
-
-          &::after {
-            height: 0px;
-            width: 0px;
-
-            opacity: 0;
-          }
-        }
-      }
-    }
-
-    &:hover {
-      .checkbox__style::after {
-        height: 36px;
-        width: 36px;
-
-        opacity: 1;
-
-        transition-delay: 0.2s;
       }
     }
   }
