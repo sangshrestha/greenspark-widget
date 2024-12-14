@@ -6,7 +6,7 @@
       </div>
       <div class="widget__heading">
         <p class="widget__heading-top">This product {{ action }}</p>
-        <p class="widget__heading-bottom">{{ amount }} {{ type }}</p>
+        <p class="widget__heading-bottom">{{ amountText }} {{ typeText }}</p>
       </div>
     </div>
     <div class="widget__option">
@@ -50,6 +50,12 @@ const props = defineProps({
 });
 
 const currentColour = ref(props.selectedColor);
+
+const amountText =
+  props.type === "carbon" ? props.amount + "kgs of" : props.amount;
+
+const typeText =
+  props.type === "plastic" ? props.type + " bottles" : props.type;
 
 const lightColors = ["white", "beige"];
 const currentContrast = computed(() =>
